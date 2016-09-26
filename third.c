@@ -109,6 +109,12 @@ int main(int argc, char *argv[])
 	else
 	{
 		file_pointer = fopen(argv[1], mode);
+		if(file_pointer == NULL)
+		{
+			printf("error\n");
+			return 0;
+		}
+
 		char text[10];
 		int data;
 		while (fscanf(file_pointer, "%s %d", text, &data) != EOF)
