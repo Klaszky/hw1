@@ -119,6 +119,11 @@ int main(int argc, char *argv[])
 		int data;
 		while (fscanf(file_pointer, "%s %d", text, &data) != EOF)
 		{
+			if( strcmp(text, "i") != 0 && strcmp(text, "d") != 0  )
+			{
+				printf("error\n");
+				return 0;
+			}
 //			printf("%s , %d\n", text, data);
 			if(!strcmp(text, "i"))
 			{
