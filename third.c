@@ -48,6 +48,7 @@ void insert_in_ord(struct node *head, int value)
 	struct node *current = head;
 	struct node *temp = malloc(sizeof(struct node));
 	temp->data = value;
+	temp->next = NULL;
 	while(current->next != NULL)
 	{
 		if(current->next->data == value)
@@ -115,7 +116,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		char text[10];
+		char text[5];
 		int data;
 		while (fscanf(file_pointer, "%s %d", text, &data) != EOF)
 		{
@@ -135,23 +136,8 @@ int main(int argc, char *argv[])
 		}
 	}
 
-
-
-//	insert_in_ord(head, 69);
-//	insert_in_ord(head, 42);
-//	insert_in_ord(head, 69);
-//	insert_in_ord(head, 100);
-
 	print_ll(head);
 
-//	del(head, 20);
-//	print_ll(head);
-//	del(head, 100);
-//	print_ll(head);
-//	del(head, 42);
-//	print_ll(head);
-//	del(head, 100);
-//	print_ll(head);
 	return 0;
 
 }
