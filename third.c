@@ -13,7 +13,7 @@ struct node
 	struct node *next;
 };
 
-void insert_end(struct node *head, int value)
+void insertEnd(struct node *head, int value)
 {
 	struct node *current = head;
 	while(current->next != NULL)
@@ -26,7 +26,7 @@ void insert_end(struct node *head, int value)
 	current->next->data = value;
 }
 
-void print_ll(struct node *head)
+void printLL(struct node *head)
 {
 	if(head->next == NULL)
 	{
@@ -43,7 +43,7 @@ void print_ll(struct node *head)
 	printf("\n");
 }
 
-void insert_in_ord(struct node *head, int value)
+void insertOrd(struct node *head, int value)
 {
 	struct node *current = head;
 	struct node *temp = malloc(sizeof(struct node));
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 	head = malloc(sizeof(struct node));
 
 
-	FILE *file_pointer;
+	FILE *filePointer;
 	char *mode = "r";
 	if(argc == 1)
 	{
@@ -109,8 +109,8 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		file_pointer = fopen(argv[1], mode);
-		if(file_pointer == NULL)
+		filePointer = fopen(argv[1], mode);
+		if(filePointer == NULL)
 		{
 			printf("error\n");
 			return 0;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
 		char text[5];
 		int data;
-		while (fscanf(file_pointer, "%s %d", text, &data) != EOF)
+		while (fscanf(filePointer, "%s %d", text, &data) != EOF)
 		{
 			if( strcmp(text, "i") != 0 && strcmp(text, "d") != 0  )
 			{
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 //			printf("%s , %d\n", text, data);
 			if(!strcmp(text, "i"))
 			{
-				insert_in_ord(head, data);
+				insertOrd(head, data);
 			}else if(!strcmp(text, "d"))
 			{
 				del(head, data);
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	print_ll(head);
+	printLL(head);
 
 	return 0;
 
