@@ -2,11 +2,13 @@
 //////////////////////////
 #include <stdio.h>
 #include <string.h>
-
-int strcmp(const char *string1, const char *string2);
 void *malloc(size_t size);
-int fscanf(FILE *stream, const char *format, ...);
 void free(void *ptr);
+int fscanf(FILE *stream, const char *format, ...);
+int strcmp(const char *string1, const char *string2);
+int isdigit(int num);
+int atoi(const char *nptr);
+size_t strlen(const char *str);
 
 
 // my linked list struct
@@ -90,6 +92,29 @@ void del(struct node *head, int value)
 
 }
 
+int isDig(char *input)
+{
+	int flag = 0;
+	int i;
+
+	if(strlen(input) == 0)
+	{
+		flag = 0;
+		return flag;
+	}
+
+	for(i = 0; i < strlen(input); i++)
+	{
+		if(!isdigit(intput[i]))
+		{
+			flag = 0;
+			return flag;
+		}
+	}
+
+	return flag;
+}
+
 // end of function definitions
 //////////////////////////
 
@@ -124,8 +149,8 @@ int main(int argc, char *argv[])
 		}
 
 		char text[5];
-		int data;
-		while (fscanf(filePointer, "%s %d", text, &data) != EOF)
+		char data[20];
+		while (fscanf(filePointer, "%s %s", text, data) != EOF)
 		{
 			if( strcmp(text, "i") != 0 && strcmp(text, "d") != 0  )
 			{
@@ -133,13 +158,19 @@ int main(int argc, char *argv[])
 				return 0;
 			}
 
+			if(!isDig(data))
+			{
+				printf("error\n");
+				return 0;
+			}
+
 			if(!strcmp(text, "i"))
 			{
-				insertOrd(head, data);
+				insertOrd(head, atoi(data));
 			}
 			else if(!strcmp(text, "d"))
 			{
-				del(head, data);
+				del(head, atoi(data));
 			}
 		}
 	}
