@@ -4,11 +4,30 @@
 void *malloc(size_t size);
 int **twoDarr;
 
+void printArr(int numRows, int numCols, int **twoDarray)
+{
+	int i, j;
+	for(i = 0; i < numRows; i++)
+	{
+		for(j = 0; j < numCols; j++)
+		{
+			if(j == 0)
+			{
+				printf("%d", twoDarray[i][j]);
+			}
+			else
+			{
+				printf("\t%d", twoDarray[i][j]);
+			}
+		}
+		printf("\n");
+	}
+}
 int main(int argc, char *argv[])
 {
 	int rows, cols, value;
 	int i, j;
-	FILE *file_pointer;
+	FILE *filePointer;
 	char *mode = "r";
 	if(argc == 1)
 	{
@@ -17,14 +36,14 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		file_pointer = fopen(argv[1], mode);
-		if(file_pointer == NULL)
+		filePointer = fopen(argv[1], mode);
+		if(filePointer == NULL)
 		{
 			printf("error\n");
 			return 0;
 		}
 
-		fscanf(file_pointer, "%d %d", &rows, &cols);
+		fscanf(filePointer, "%d %d", &rows, &cols);
 
 		twoDarr = (int **) malloc(rows * sizeof(int *));
 		for(i = 0; i < rows; i++)
@@ -37,7 +56,7 @@ int main(int argc, char *argv[])
 		{
 			for(j = 0; j < cols; j++)
 			{
-				fscanf(file_pointer, "%d", &value);
+				fscanf(filePointer, "%d", &value);
 				twoDarr[i][j] = value;
 			}
 		}
@@ -46,12 +65,12 @@ int main(int argc, char *argv[])
 		{
 			for(j = 0; j < cols; j++)
 			{
-				fscanf(file_pointer, "%d", &value);
+				fscanf(filePointer, "%d", &value);
 				twoDarr[i][j] += value;
 			}
 		}
 	}
 
-	printf("%d", twoDarr[0][0]);
+	printArr(rows, cols, twoDarr);
 	return 0;
 }
