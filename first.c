@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 
 	// changes input from char to int
 	//////////////////////////
-	int intput_int = atoi(argv[1]);
+	int intputInt = atoi(argv[1]);
 
-	if(intput_int % 2 == 0)
+	if(intputInt % 2 == 0)
 	{
 		printf("even\n");
 	}

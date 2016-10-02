@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 {
 	// set up and prep to read from file
 	//////////////////////////
-	FILE *file_pointer;
+	FILE *filePointer;
 	char *mode = "r";
 	if(argc == 1)
 	{
@@ -130,8 +130,8 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		file_pointer = fopen(argv[1], mode);
-		if(file_pointer == NULL)
+		filePointer = fopen(argv[1], mode);
+		if(filePointer == NULL)
 		{
 			printf("error\n");
 			return 0;
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 	//////////////////////////
 	char text[5];
 	char value[15];
-	while(fscanf(file_pointer, "%s %s", text, value) != EOF)
+	while(fscanf(filePointer, "%s %s", text, value) != EOF)
 	{
 		if( strcmp(text, "i") != 0 && strcmp(text, "s"))
 		{
@@ -164,4 +164,3 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
-

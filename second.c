@@ -17,17 +17,17 @@ int main(int argc, char *argv[])
 	}
 
 
-	int input_int = atoi(argv[1]);
+	int inputInt = atoi(argv[1]);
 
 	// does some leg work getting rid of any evens off the batt
 	// and numbers under 4
 	//////////////////////////
-	if(input_int < 4 && input_int > 0)
+	if(inputInt < 4 && inputInt > 0)
 	{
 		printf("yes\n");
 		return 0;
 	}
-	else if(input_int % 2 == 0)
+	else if(inputInt % 2 == 0)
 	{
 		printf("no\n");
 		return 0;
@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
 	// tries to divie the input num by all odd ints
 	// up to half of its value
 	//////////////////////////
-	for(i = 3; i < ( (input_int + 1) / 2 ); i+=2)
+	for(i = 3; i < ( (inputInt + 1) / 2 ); i+=2)
 	{
-		if(input_int % i == 0)
+		if(inputInt % i == 0)
 		{
 			printf("no\n");
 			return 0;
