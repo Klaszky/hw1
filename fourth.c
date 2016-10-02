@@ -9,6 +9,9 @@ void *malloc(size_t size);
 void free(void *ptr);
 int fscanf(FILE *stream, const char *format, ...);
 int strcmp(const char *string1, const char *string2);
+int isdigit(int num);
+int atoi(const char *nptr);
+size_t strlen(const char *str);
 
 // struct of my hashItem and some global vars
 //////////////////////////
@@ -25,7 +28,14 @@ struct hashItem *item;
 //////////////////////////
 int hash(int data)
 {
-	return data % MAX;
+	if(data >= 0)
+	{
+		return data % MAX;
+	}
+	else
+	{
+		return -data % MAX;
+	}
 }
 
 void search(int value)
@@ -77,6 +87,33 @@ void insert(int value)
 	printf("inserted\n");
 }
 
+int isDig(char *input)
+{
+	int flag = 1;
+	int i;
+
+	if(strlen(input) == 0)
+	{
+		flag = 0;
+		return flag;
+	}
+
+	for(i = 0; i < strlen(input); i++)
+	{
+		if(input[i] == '-' && i == 0 && strlen(input) > 1)
+		{
+			continue;
+		}
+		if(!isdigit(input[i]))
+		{
+			flag = 0;
+			return flag;
+		}
+	}
+
+	return flag;
+}
+
 // end of function definitions
 //////////////////////////
 
@@ -104,20 +141,24 @@ int main(int argc, char *argv[])
 	// gets info from file and inserts and searches as needed
 	//////////////////////////
 	char text[5];
-	int value;
-	while(fscanf(file_pointer, "%s %d", text, &value) != EOF)
+	char value[15];
+	while(fscanf(file_pointer, "%s %s", text, value) != EOF)
 	{
 		if( strcmp(text, "i") != 0 && strcmp(text, "s"))
 		{
 			printf("error\n");
 		}
+		else if(!isDig(value))
+		{
+			printf("error\n");
+		}
 		else if(!strcmp(text, "i"))
 		{
-			insert(value);
+			insert(atoi(value));
 		}
 		else if(!strcmp(text, "s"))
 		{
-			search(value);
+			search(atoi(value));
 		}
 	}
 
