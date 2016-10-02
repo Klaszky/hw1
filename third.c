@@ -94,7 +94,7 @@ void del(struct node *head, int value)
 
 int isDig(char *input)
 {
-	int flag = 0;
+	int flag = 1;
 	int i;
 
 	if(strlen(input) == 0)
@@ -105,7 +105,11 @@ int isDig(char *input)
 
 	for(i = 0; i < strlen(input); i++)
 	{
-		if(!isdigit(intput[i]))
+		if(input[i] == '-' && i == 0 && strlen(input) > 1)
+		{
+			continue;
+		}
+		if(!isdigit(input[i]))
 		{
 			flag = 0;
 			return flag;
