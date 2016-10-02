@@ -1,3 +1,5 @@
+// includes, prototypes, and def of const var
+//////////////////////////
 #include <stdio.h>
 #include <string.h>
 
@@ -8,15 +10,19 @@ void free(void *ptr);
 int fscanf(FILE *stream, const char *format, ...);
 int strcmp(const char *string1, const char *string2);
 
+// struct of my hashItem and some global vars
+//////////////////////////
 struct hashItem
 {
 	int data;
 };
 
 struct hashItem *hashArr[MAX];
-struct hashItem *dItem;
 struct hashItem *item;
 
+
+// functions that will be used in main
+//////////////////////////
 int hash(int data)
 {
 	return data % MAX;
@@ -71,12 +77,13 @@ void insert(int value)
 	printf("inserted\n");
 }
 
-//struct DataItem* del(struct HashItem *item){}
-
-//void display(){}
+// end of function definitions
+//////////////////////////
 
 int main(int argc, char *argv[])
 {
+	// set up and prep to read from file
+	//////////////////////////
 	FILE *file_pointer;
 	char *mode = "r";
 	if(argc == 1)
@@ -94,6 +101,8 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	// gets info from file and inserts and searches as needed
+	//////////////////////////
 	char text[5];
 	int value;
 	while(fscanf(file_pointer, "%s %d", text, &value) != EOF)
@@ -111,13 +120,7 @@ int main(int argc, char *argv[])
 			search(value);
 		}
 	}
-	//insert(42);
-	//insert(42);
-	//insert(43);
-	//insert(1042);
-	//search(1042);
-	//search(42);
-	//search(69);
+
 	return 0;
 }
 

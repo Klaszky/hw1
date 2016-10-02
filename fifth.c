@@ -1,9 +1,13 @@
+// inclues and prototypes and a global var
+//////////////////////////
 #include <stdio.h>
 #include <string.h>
 
 void *malloc(size_t size);
 int **twoDarr;
 
+// function i'll run at end of program
+//////////////////////////
 void printArr(int numRows, int numCols, int **twoDarray)
 {
 	int i, j;
@@ -23,12 +27,18 @@ void printArr(int numRows, int numCols, int **twoDarray)
 		printf("\n");
 	}
 }
+
+
 int main(int argc, char *argv[])
 {
+	// set up of twoD array and prep to read from file
+	//////////////////////////
 	int rows, cols, value;
 	int i, j;
 	FILE *filePointer;
 	char *mode = "r";
+
+
 	if(argc == 1)
 	{
 		printf("error\n");
@@ -36,6 +46,8 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		// reads from file and sets up array
+		//////////////////////////
 		filePointer = fopen(argv[1], mode);
 		if(filePointer == NULL)
 		{
@@ -45,13 +57,16 @@ int main(int argc, char *argv[])
 
 		fscanf(filePointer, "%d %d", &rows, &cols);
 
+		// gets dimensions of array
+		//////////////////////////
 		twoDarr = (int **) malloc(rows * sizeof(int *));
 		for(i = 0; i < rows; i++)
 		{
 			twoDarr[i] = (int *) malloc(cols * sizeof(int));
 		}
 
-
+		// populations array with initial values
+		//////////////////////////
 		for(i = 0; i < rows; i++)
 		{
 			for(j = 0; j < cols; j++)
@@ -61,6 +76,8 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		// adds values current values to initial values
+		//////////////////////////
 		for(i = 0; i < rows; i++)
 		{
 			for(j = 0; j < cols; j++)
@@ -71,6 +88,8 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	// prints final array
+	//////////////////////////
 	printArr(rows, cols, twoDarr);
 	return 0;
 }

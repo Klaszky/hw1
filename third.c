@@ -1,30 +1,24 @@
-#include<stdio.h>
-#include<string.h>
-
+// includes and prototypes
+//////////////////////////
+#include <stdio.h>
+#include <string.h>
 
 int strcmp(const char *string1, const char *string2);
 void *malloc(size_t size);
 int fscanf(FILE *stream, const char *format, ...);
 void free(void *ptr);
 
+
+// my linked list struct
+//////////////////////////
 struct node
 {
 	int data;
 	struct node *next;
 };
 
-void insertEnd(struct node *head, int value)
-{
-	struct node *current = head;
-	while(current->next != NULL)
-	{
-		current = current->next;
-	}
-
-	current->next = malloc(sizeof(struct node));
-	current->next->next = NULL;
-	current->next->data = value;
-}
+// functions that will be used in main
+//////////////////////////
 
 void printLL(struct node *head)
 {
@@ -94,14 +88,23 @@ void del(struct node *head, int value)
 	}
 
 }
+
+// end of function definitions
+//////////////////////////
+
 int main(int argc, char *argv[])
 {
+
+	// some set up of my linked list and prep to read
+	// from the input i'll need from a file 
+	//////////////////////////
 	struct node *head = NULL;
 	head = malloc(sizeof(struct node));
 
 
 	FILE *filePointer;
 	char *mode = "r";
+
 	if(argc == 1)
 	{
 		printf("error\n");
@@ -109,6 +112,9 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		// opens file, pulls out data, reports errors,
+		// inserts or deletes as needed 
+		//////////////////////////
 		filePointer = fopen(argv[1], mode);
 		if(filePointer == NULL)
 		{
@@ -125,17 +131,20 @@ int main(int argc, char *argv[])
 				printf("error\n");
 				return 0;
 			}
-//			printf("%s , %d\n", text, data);
+
 			if(!strcmp(text, "i"))
 			{
 				insertOrd(head, data);
-			}else if(!strcmp(text, "d"))
+			}
+			else if(!strcmp(text, "d"))
 			{
 				del(head, data);
 			}
 		}
 	}
 
+	// prints final LL
+	//////////////////////////
 	printLL(head);
 
 	return 0;
