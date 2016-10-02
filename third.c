@@ -32,7 +32,7 @@ void printLL(struct node *head)
 	struct node *current = head->next;
 	while(current->next != NULL)
 	{
-		printf("%d ",current->data);
+		printf("%d\t",current->data);
 		current = current->next;
 	}
 	printf("%d",current->data);
@@ -49,6 +49,7 @@ void insertOrd(struct node *head, int value)
 	{
 		if(current->next->data == value)
 		{
+			free(temp);
 			return;
 		}
 		else if(current->next->data > value)
