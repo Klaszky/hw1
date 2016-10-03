@@ -2,8 +2,7 @@
 //////////////////////////
 #include <stdio.h>
 #include <unistd.h>
-
-int atoi(char*);
+#include "first.h"
 
 
 int main(int argc, char *argv[])
