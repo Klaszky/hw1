@@ -2,7 +2,7 @@
 //////////////////////////
 #include <stdio.h>
 #include <unistd.h>
-
+#include "second.h"
 
 int main(int argc, char *argv[])
 {
