@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int atoi(char*);
-
 
 int main(int argc, char *argv[])
 {

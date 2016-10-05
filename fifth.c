@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-void *malloc(size_t size);
 int **twoDarr;
 
 // function i'll run at end of program
